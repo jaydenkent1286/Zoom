@@ -1,0 +1,258 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>If I Were President — Zoom Discussion</title>
+  <meta name="description" content="Join our Zoom discussion: 'What you would do if you were president' — share ideas, debate policies, and ask questions." />
+  <style>
+    /* Simple, modern responsive layout */
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#7c3aed;--muted:#9aa4b2;--glass: rgba(255,255,255,0.03)}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,Arial;background:linear-gradient(180deg,#071026 0%, #0b1220 100%);color:#e6eef6}
+    .container{max-width:1000px;margin:36px auto;padding:24px}
+    header{display:flex;align-items:center;gap:18px}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:20px;box-shadow:0 6px 18px rgba(124,58,237,0.15)}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin:6px 0 20px}.hero{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+
+.cta{display:flex;flex-direction:column;gap:12px}
+.btn{display:inline-block;padding:12px 16px;border-radius:10px;text-decoration:none;text-align:center;font-weight:600;cursor:pointer}
+.btn-zoom{background:linear-gradient(90deg,var(--accent),#4f46e5);color:white}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+.meta{font-size:0.95rem;color:var(--muted)}
+.agenda{margin-top:12px}
+ul{padding-left:18px}
+
+.info-row{display:flex;gap:12px;align-items:center}
+.chip{background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600}
+
+label{display:block;margin-top:10px;font-size:0.9rem;color:var(--muted)}
+input[type=text],textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+textarea{min-height:92px}
+.small{font-size:0.85rem;color:var(--muted)}
+
+.meeting-details{display:grid;gap:8px}
+.detail{display:flex;justify-content:space-between;padding:8px;background:rgba(255,255,255,0.01);border-radius:8px}
+.copy-btn{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+
+footer{margin-top:22px;color:var(--muted);font-size:0.85rem;text-align:center}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;}
+  .container{padding:16px}
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">P</div>
+      <div>
+        <h1>If I Were President — Zoom Discussion</h1>
+        <p class="lead">A friendly online meetup to brainstorm and share what you'd do if you were president. All ideas welcome — policy, culture, climate, education, and more.</p>
+      </div>
+    </header><main class="hero" role="main">
+  <section class="card">
+    <h2 style="margin-top:0">About the session</h2>
+    <p class="meta">This session is an open discussion where participants share policies they'd introduce, priorities they'd set, and questions they'd ask a president. It's intended for respectful conversation and idea-sharing.</p>
+
+    <div class="agenda">
+      <h3 style="margin-bottom:6px">Agenda</h3>
+      <ul>
+        <li>Introductions (5–10 min)</li>
+        <li>Lightning policy pitches (20–30 min)</li>
+        <li>Open debate / follow-ups (20 min)</li>
+        <li>Q&A & next steps (10 min)</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:14px" class="info-row">
+      <div class="chip">No sign-up required</div>
+      <div class="chip">All opinions welcome</div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0">
+
+    <h3 style="margin-bottom:6px">Share an idea before the meeting</h3>
+    <form id="ideaForm" onsubmit="submitIdea(event)">
+      <label for="name">Your name (optional)</label>
+      <input id="name" type="text" placeholder="How should we call you?">
+      <label for="email">Email (optional)</label>
+      <input id="email" type="text" placeholder="so we can follow up (optional)">
+      <label for="idea">Idea (short)</label>
+      <textarea id="idea" placeholder="One or two sentences about an idea you'd propose"></textarea>
+      <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+        <button type="submit" class="btn btn-ghost">Submit idea (local demo)</button>
+        <div id="ideaMsg" class="small" aria-live="polite"></div>
+      </div>
+    </form>
+
+    <p class="small" style="margin-top:12px">Note: This page is a static front-end demo and does not send data to a server. Submissions are stored locally in your browser storage and can be copied manually for sharing with the host.</p>
+
+  </section>
+
+  <aside class="card">
+    <h3 style="margin-top:0">Join the Zoom</h3>
+    <p class="meta">Click the button below to open the Zoom meeting in a new tab. Meeting details are parsed from the link you provided so you can copy ID or password quickly.</p>
+
+    <div style="margin-top:12px" class="meeting-details">
+      <div class="detail">
+        <div>
+          <div style="font-size:0.95rem;font-weight:700">Meeting URL</div>
+          <div id="meetingUrl" class="small" style="word-break:break-all"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+          <a id="joinBtn" class="btn btn-zoom" target="_blank" rel="noopener">Join Zoom</a>
+          <button id="copyUrlBtn" class="copy-btn">Copy URL</button>
+        </div>
+      </div>
+
+      <div class="detail">
+        <div>
+          <div style="font-size:0.95rem;font-weight:700">Meeting ID</div>
+          <div id="meetingId" class="small"></div>
+        </div>
+        <button id="copyIdBtn" class="copy-btn">Copy ID</button>
+      </div>
+
+      <div class="detail">
+        <div>
+          <div style="font-size:0.95rem;font-weight:700">Password</div>
+          <div id="meetingPwd" class="small"></div>
+        </div>
+        <button id="copyPwdBtn" class="copy-btn">Copy pwd</button>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <a id="calendarBtn" class="btn btn-ghost" target="_blank" rel="noopener">Add to calendar (ICS)</a>
+        <a href="#ideas" class="btn btn-ghost">View submitted ideas</a>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+
+    <h4 style="margin:4px 0">Host</h4>
+    <p class="small">Hosted by the community. Be respectful and stay on topic.</p>
+
+  </aside>
+</main>
+
+<section id="ideas" class="card" style="margin-top:18px">
+  <h3 style="margin-top:0">Submitted ideas (local)</h3>
+  <p class="small">Ideas submitted on this device (they won't sync across devices).</p>
+  <div id="ideasList" style="margin-top:8px;display:grid;gap:8px"></div>
+  <div style="margin-top:12px;display:flex;gap:8px">
+    <button id="exportBtn" class="btn btn-ghost">Copy all ideas</button>
+    <button id="clearBtn" class="btn btn-ghost">Clear local ideas</button>
+  </div>
+</section>
+
+<footer>
+  <div>Made for a community discussion about ideas. This is not an official campaign page.</div>
+</footer>
+
+  </div>  <script>
+    // ----- CONFIG: put the Zoom link you gave here -----
+    const providedZoom = "https://us05web.zoom.us/j/7776193534?pwd=9YGVWpcX2X623au7r5IHEDjETFAtNj.1";
+
+    // Elements
+    const meetingUrlEl = document.getElementById('meetingUrl');
+    const joinBtn = document.getElementById('joinBtn');
+    const meetingIdEl = document.getElementById('meetingId');
+    const meetingPwdEl = document.getElementById('meetingPwd');
+
+    function parseZoom(url){
+      try{
+        const u = new URL(url);
+        const path = u.pathname; // /j/7776193534
+        const idMatch = path.match(/\/j\/(\d+)/);
+        const id = idMatch ? idMatch[1] : '';
+        const pwd = u.searchParams.get('pwd') || '';
+        return {id,pwd,url};
+      }catch(e){return {id:'',pwd:'',url:url}}
+    }
+
+    const parsed = parseZoom(providedZoom);
+    meetingUrlEl.textContent = parsed.url;
+    joinBtn.href = parsed.url;
+    meetingIdEl.textContent = parsed.id || '—';
+    meetingPwdEl.textContent = parsed.pwd || '—';
+
+    // copy helpers
+    async function copyText(t){
+      try{await navigator.clipboard.writeText(t);alert('Copied to clipboard');}catch(e){prompt('Copy this text',t)}
+    }
+
+    document.getElementById('copyUrlBtn').addEventListener('click',()=>copyText(parsed.url));
+    document.getElementById('copyIdBtn').addEventListener('click',()=>copyText(parsed.id));
+    document.getElementById('copyPwdBtn').addEventListener('click',()=>copyText(parsed.pwd));
+
+    // idea form handling (local storage)
+    const ideaForm = document.getElementById('ideaForm');
+    const ideasList = document.getElementById('ideasList');
+    const ideaMsg = document.getElementById('ideaMsg');
+
+    function loadIdeas(){
+      const raw = localStorage.getItem('ifip_ideas');
+      return raw?JSON.parse(raw):[];
+    }
+    function saveIdeas(arr){localStorage.setItem('ifip_ideas',JSON.stringify(arr));renderIdeas();}
+
+    function renderIdeas(){
+      const arr = loadIdeas();
+      ideasList.innerHTML = '';
+      arr.slice().reverse().forEach((it,idx)=>{
+        const div = document.createElement('div');
+        div.style.padding='10px';div.style.borderRadius='8px';div.style.background='rgba(255,255,255,0.01)';
+        div.innerHTML = `<div style="font-weight:700">${escapeHtml(it.name||'Anonymous')}</div><div class="small">${escapeHtml(it.email||'')}</div><div style="margin-top:6px">${escapeHtml(it.idea)}</div>`;
+        ideasList.appendChild(div);
+      });
+    }
+
+    function escapeHtml(s){return String(s||'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+
+    function submitIdea(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const idea = document.getElementById('idea').value.trim();
+      if(!idea){ideaMsg.textContent='Write a short idea before submitting.';return}
+      const arr = loadIdeas();
+      arr.push({name,email,idea,time:new Date().toISOString()});
+      saveIdeas(arr);
+      ideaMsg.textContent='Saved locally — you can copy ideas using the button below.';
+      ideaForm.reset();
+      setTimeout(()=>ideaMsg.textContent='',2200);
+    }
+
+    document.getElementById('exportBtn').addEventListener('click',()=>{
+      const arr = loadIdeas();
+      if(!arr.length){alert('No ideas to copy');return}
+      const txt = arr.map(a=>`Name: ${a.name||'Anonymous'}\nEmail: ${a.email||''}\nIdea: ${a.idea}\n---`).join('\n');
+      copyText(txt);
+    });
+    document.getElementById('clearBtn').addEventListener('click',()=>{if(confirm('Clear local submitted ideas?')){localStorage.removeItem('ifip_ideas');renderIdeas();}});
+
+    // Add to calendar (download a simple ICS)
+    document.getElementById('calendarBtn').addEventListener('click',()=>{
+      const title = encodeURIComponent('If I Were President — Zoom Discussion');
+      const desc = encodeURIComponent('Join the Zoom to discuss what you would do if you were president.');
+      // simple 1-hour event starting now (user can edit) — this is a demo ICS
+      const start = new Date();
+      const end = new Date(start.getTime()+60*60*1000);
+      function toICSDate(d){return d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z'}
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nUID:${Date.now()}\nDTSTAMP:${toICSDate(new Date())}\nDTSTART:${toICSDate(start)}\nDTEND:${toICSDate(end)}\nSUMMARY:${decodeURIComponent(title)}\nDESCRIPTION:${decodeURIComponent(desc)}\\nJoin: ${parsed.url}\nEND:VEVENT\nEND:VCALENDAR`;
+      const blob = new Blob([ics],{type:'text/calendar'});
+      const url = URL.createObjectURL(blob);
+      window.open(url,'_blank');
+    });
+
+    // init
+    renderIdeas();
+  </script></body>
+  </html>
